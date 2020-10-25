@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="main">
+
+    <view class="content">
+        <weui-cells>
+            <block wx:for="{{ API_list }}">
+                <weui-cell link hover value="{{ item.chinese_name }}" url="{{ item.url }}"></weui-cell>
+            </block>
+        </weui-cells>
+    </view>
+    <view slot="footer" style="margin: 0 auto;text-align: center">
+        <view class="weui-footer__text">Copyright © 2020-2020 Adrian</view>
+    </view>
+
+</view>

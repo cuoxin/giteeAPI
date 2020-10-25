@@ -1,0 +1,70 @@
+<!--information.wxml-->
+
+<view class="main">
+    <view class="content">
+        <block wx:if="{{ reponse.message === '404 Project Not Found' }}">
+            请检查网络是否连接或者信息填写是否正确
+        </block>
+        <block wx:elif="{{ reponse.length != 0 }}">
+            <block wx:for="{{ reponse }}">
+
+                    <block wx:if="{{ request_name === 'branches' || request_name === 'collaborators' }}">
+                        <weui-cells title="{{ title }}-{{ index + 1 }}">
+                            <weui-cell value="{{ item.name }}" ></weui-cell>
+                        </weui-cells>
+                    </block>
+
+                    <block wx:elif="{{ request_name === 'commits' }}">
+                        <weui-cells title="{{ item.commit.committer.date }}">
+                            <weui-cell value="{{ item.commit.committer.name }}"></weui-cell>
+                            <weui-cell value="{{ item.commit.committer.email }}"></weui-cell>
+                            <weui-cell value="{{ item.commit.message }}"></weui-cell>
+                        </weui-cells>
+                    </block>
+
+                    <block wx:elif="{{ request_name === 'contributors' }}">
+                        <weui-cells title="contributions: {{ item.contributions }}">
+                            <weui-cell value="{{ item.name }}"></weui-cell>
+                            <weui-cell value="{{ item.email }}"></weui-cell>
+                        </weui-cells>
+                    </block>
+
+                    <block wx:elif="{{ request_name === 'releases' }}">
+                        <weui-cells title="{{ item.created_at }}">
+                            <weui-cell>
+                                <view style="display: inline-block; vertical-align: middle">{{ item.name }}</view>
+                                <weui-badge wx:if="{{ index === reponse.length - 1 }}" style="margin-left: 5px;" content="New"/>
+                            </weui-cell>
+                            <weui-cell value="{{ item.body }}"></weui-cell>
+                        </weui-cells>
+                    </block>
+
+                    <block wx:elif="{{ request_name === 'issues' }}">
+                        <weui-cell value="{{ item.user.name }}"></weui-cell>
+                        <weui-cell value="{{ item.title }}"></weui-cell>
+                        <weui-cell value="{{ item.body }}"></weui-cell>
+                    </block>
+
+                    <block wx:elif="{{ request_name === 'comments' }}">
+                        <weui-cells title="{{ item.updated_at }}">
+                            <weui-cell value="{{ item.user.name }}"></weui-cell>
+                            <weui-cell value="{{ item.body }}"></weui-cell>
+                        </weui-cells>
+                    </block>
+
+                    <block wx:elif="{{ request_name === 'readme' }}">
+                        <weui-cells wx:if="{{ index === 'html_url' }}">
+                            <weui-cell>去这里看：</weui-cell>
+                            <weui-cell value="{{ item }}"></weui-cell>
+                        </weui-cells>
+                    </block>
+
+            </block>
+        </block>
+
+        <block wx:else>
+            空空如也
+        </block>
+    </view>
+
+</view>

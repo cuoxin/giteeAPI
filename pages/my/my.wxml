@@ -1,0 +1,20 @@
+<!--my.wxml-->
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+    <weui-form>
+        <weui-cells title="信息">
+            <weui-cell prop="用户名" title="name">
+                <input type="text" name="name" placeholder="请输入用户名" required/>
+            </weui-cell>
+            <weui-cell prop="仓库名" title="repo">
+                <input type="text" name="repo" placeholder="请输入仓库名" required/>
+            </weui-cell>
+        </weui-cells>
+        <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" form-type="submit" >确定</button>
+        </view>
+        <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" form-type="reset" >重置</button>
+        </view>
+    </weui-form>
+</form>
